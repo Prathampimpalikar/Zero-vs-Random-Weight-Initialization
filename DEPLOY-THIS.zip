@@ -1,0 +1,90 @@
+# 🚀 Deployment Guide
+
+**Project:** Zero vs Random Initialization — Neural Network Learning Lab
+**Student:** Pratham Pimpalikar (CM23031)
+
+Your goal: a **public URL** you can send to your professor.
+
+---
+
+## ✅ Pre-flight status
+
+Everything is already verified and ready:
+
+| Check | Status |
+|---|---|
+| `npm run build` succeeds | ✅ Pass |
+| Production bundle serves correctly | ✅ Verified (index, CSS, JS all HTTP 200) |
+| `vercel.json` (SPA rewrite) | ✅ Included |
+| `netlify.toml` (build + redirect) | ✅ Included |
+| `public/_redirects` (Netlify SPA) | ✅ Included |
+| Backend required | ❌ None — fully static |
+| Environment variables needed | ❌ None |
+
+Build output: `index.html` (1.3 kB) · CSS (22 kB → 5.4 kB gzip) · JS (669 kB → 196 kB gzip)
+
+---
+
+## 🥇 Option 1 — Netlify Drop (FASTEST — no account, ~60 seconds)
+
+**Best if you just need a link right now.**
+
+1. Download **`nn-init-lab-DIST-dragdrop.zip`** from your workspace.
+2. Unzip it → you get a `dist` folder.
+3. Go to **https://app.netlify.com/drop**
+4. **Drag the `dist` folder** onto the page.
+5. Done. You instantly get a URL like `https://spontaneous-marzipan-a1b2c3.netlify.app`
+
+> ⚠️ Drag the **`dist` folder itself**, not the zip file, and not the folder that *contains* dist.
+
+**To get a nicer URL:** create a free Netlify account, then *Site settings → Change site name* → e.g. `nn-init-lab-cm23031` → giving you `https://nn-init-lab-cm23031.netlify.app`
+
+---
+
+## 🥈 Option 2 — Vercel via GitHub (BEST for a college project)
+
+**Recommended for viva** — it shows your source code on GitHub *and* gives a live URL. Auto-redeploys on every push.
+
+### Step 1 — Put the code on GitHub
+
+Download **`nn-init-lab-SOURCE.zip`**, unzip it, then:
+
+```bash
+cd nn-init-lab
+
+git init
+git add .
+git commit -m "Neural Network Weight Initialization Lab - CM23031"
+git branch -M main
+```
+
+Create an empty repo at **https://github.com/new** (name it `nn-init-lab`, do **not** add a README), then:
+
+```bash
+git remote add origin https://github.com/YOUR-USERNAME/nn-init-lab.git
+git push -u origin main
+```
+
+### Step 2 — Deploy
+
+1. Go to **https://vercel.com/new**
+2. Sign in with GitHub
+3. Click **Import** next to your `nn-init-lab` repo
+4. Vercel auto-detects everything:
+   - Framework Preset: **Vite**
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+5. Click **Deploy**
+
+After ~40 seconds you get `https://nn-init-lab.vercel.app`
+
+---
+
+## 🥉 Option 3 — Vercel CLI (no GitHub)
+
+```bash
+cd nn-init-lab
+npm i -g vercel
+vercel login
+vercel --prod
+```
